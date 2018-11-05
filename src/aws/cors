@@ -1,0 +1,38 @@
+"use strict";
+
+export class Cors {
+
+    constructor( event ) {
+
+        this._event = event;
+    }
+
+    get headers() {
+
+        const cors_headers = {};
+
+        if( ! this._event )
+            return cors_headers;
+
+        if( ! ('stageVariables' in this._event) )
+            return cors_headers;
+
+        if( this._event.stageVariables.CORS_ACCESS_CONTROL_ALLOW_ORIGIN )
+        {
+            cors_headers['Access-Control-Allow-Origin'] = this._event.stageVariables.CORS_ACCESS_CONTROL_ALLOW_ORIGIN.replace( /all/gi, '*' );
+        }
+
+        if( this._event.stageVariables.CORS_ACCESS_CONTROL_ALLOW_METHODS )
+        {
+            cors_headers['Access-Control-Allow-Methods'] = this._event.stageVariables.CORS_ACCESS_CONTROL_ALLOW_METHODS.replace( /all/gi, 'DELETE, GET, OPTIONS, POST, PUT' );
+        }
+
+        if( this._event.stageVariables.CORS_ACCESS_CONTROL_ALLOW_HEADERS )
+        {
+            cors_headers['Access-Control-Allow-Headers'] = this._event.stageVariables.CORS_ACCESS_CONTROL_ALLOW_HEADERS.replace( /all/gi, 'Accept,Content-Type,Authorization' );
+        }
+
+        return cors_headers;
+
+    }
+}

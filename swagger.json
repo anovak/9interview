@@ -1,0 +1,306 @@
+{
+	"swagger" : "2.0",
+	"info" : {
+		"version" : "2017-07-29T00:00:00Z",
+		"title" : "Novak_Nine_Interview"
+	},
+	"host" : "b2k2qhs42b.execute-api.ap-southeast-2.amazonaws.com",
+	"basePath" : "/novak_nine_interview",
+	"schemes" : [
+		"https"
+	],
+	"paths" : {
+
+		"/shows/filter" : {
+			"options" : {
+				"consumes" : [
+					"application/json"
+				],
+				"produces" : [
+					"application/json"
+				],
+				"responses" : {
+					"200" : {
+						"description" : "200 response",
+						"headers":{
+							"Access-Control-Allow-Headers" : {
+								"type" : "string"
+							},
+							"Access-Control-Allow-Methods" : {
+								"type" : "string"
+							},
+							"Access-Control-Allow-Origin" : {
+								"type" : "string"
+							}
+						}
+					}
+				},
+				"x-amazon-apigateway-integration" : {
+					"responses" : {
+						"default" : {
+							"statusCode" : "200"
+						}
+					},
+					"uri": "arn:aws:apigateway:ap-southeast-2:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-southeast-2:838631366206:function:Novak_nine_interview_options_verb/invocations",
+					"passthroughBehavior" : "when_no_match",
+					"httpMethod" : "POST",
+					"contentHandling" : "CONVERT_TO_TEXT",
+					"type" : "aws_proxy"
+				}
+			},
+
+			"post" : {
+				"consumes" : [
+					"application/json"
+				],
+				"produces" : [
+					"application/json"
+				],
+				"parameters" : [{
+					"name" : "site",
+					"in" : "body",
+					"required" : true,
+					"schema" : {
+						"$ref" : "#/definitions/ShowsFilterParameter"
+					}
+				}
+				],
+				"responses" : {
+					"200" : {
+						"description" : "200 response",
+						"schema" : {
+							"$ref" : "#/definitions/ShowsFilterResponse"
+						}
+					},
+					"400" : {
+						"description" : "Could not decode request: JSON parsing failed",
+						"schema" : {
+							"$ref" : "#/definitions/JsonParseResponse"
+						}
+					}
+				},
+
+				"x-amazon-apigateway-integration" : {
+					"responses" : {
+						"default" : {
+							"statusCode" : "200"
+						}
+					},
+					"uri" : "arn:aws:apigateway:ap-southeast-2:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-southeast-2:838631366206:function:Novak_nine_interview_shows_filter/invocations",
+					"passthroughBehavior" : "when_no_match",
+					"httpMethod" : "POST",
+					"contentHandling" : "CONVERT_TO_TEXT",
+					"type" : "aws_proxy"
+				}
+			}
+		}
+	},
+
+
+	"securityDefinitions" : {
+	},
+	
+	"definitions": {
+
+		"ShowsFilterParameter": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"payload": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Payload"
+					}
+				},
+				"skip": {
+					"type": "integer"
+				},
+				"take": {
+					"type": "integer"
+				},
+				"totalRecords": {
+					"type": "integer"
+				}
+			},
+			"required": [
+				"payload",
+				"skip",
+				"take",
+				"totalRecords"
+			],
+			"title": "ShowsFilterParameter"
+		},
+
+		"ShowsFilterResponse": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"response": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Response"
+					}
+				}
+			},
+			"required": [
+				"response"
+			],
+			"title": "ShowsFilterResponse"
+		},
+
+		"JsonParseResponse": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"error": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"error"
+			],
+			"title": "JsonParseResponse"
+		},
+
+		"Payload": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"country": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"drm": {
+					"type": "boolean"
+				},
+				"episodeCount": {
+					"type": "integer"
+				},
+				"genre": {
+					"type": "string"
+				},
+				"image": {
+					"$ref": "#/definitions/Image"
+				},
+				"language": {
+					"type": "string"
+				},
+				"nextEpisode": {
+					"$ref": "#/definitions/NextEpisode"
+				},
+				"primaryColour": {
+					"type": "string"
+				},
+				"seasons": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Season"
+					}
+				},
+				"slug": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				},
+				"tvChannel": {
+					"$ref": "#/definitions/TvChannel"
+				}
+			},
+			"required": [
+				"slug",
+				"title",
+				"tvChannel"
+			],
+			"title": "Payload"
+		},
+		"Image": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"showImage": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"showImage"
+			],
+			"title": "Image"
+		},
+		"NextEpisode": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"channel": {
+					"type": "null"
+				},
+				"channelLogo": {
+					"type": "string"
+				},
+				"date": {
+					"type": "null"
+				},
+				"html": {
+					"type": "string"
+				},
+				"url": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"channel",
+				"channelLogo",
+				"date",
+				"html",
+				"url"
+			],
+			"title": "NextEpisode"
+		},
+		"Season": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"slug": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"slug"
+			],
+			"title": "Season"
+		},
+		"TvChannel": {
+			"type": "string",
+			"enum": [
+				"GEM",
+				"Channel 9",
+				"GO!"
+			],
+			"title": "TvChannel"
+		},
+
+		"Response": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"image": {
+					"type": "string"
+				},
+				"slug": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"image",
+				"slug",
+				"title"
+			],
+			"title": "Response"
+		}
+	}
+}

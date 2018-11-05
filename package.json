@@ -1,0 +1,53 @@
+{
+  "name": "novak_nine_interview",
+  "version": "1.0.0",
+  "description": "Interview coding test JSON endpoint",
+  "keywords": [
+    "Nine"
+  ],
+  "author": "Anthony Novak",
+  "license": "ISC",
+  "homepage": "https://github.com/JeevesPlus/jeevesplus-api#readme",
+  "dependencies": {
+    "babel-polyfill": "7.0.0-beta.3"
+  },
+  "devDependencies": {
+    "ava": "^1.0.0-beta.3",
+    "babel-cli": "7.0.0-beta.3",
+    "babel-preset-env": "7.0.0-beta.3",
+    "babel-register": "^7.0.0-beta.3",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^7.0.1",
+    "require-dir": "^1.0.0",
+    "gulp-install": "^1.1.0",
+    "gulp-flatten": "^0.4.0",
+    "gulp-util": "^3.0.8",
+    "gulp-foreach": "^0.1.0",
+    "path": "^0.12.7",
+    "recursive-copy": "^2.0.9",
+    "fs": "^0.0.1-security",
+    "merge-stream": "^1.0.1",
+    "gulp-vinyl-zip": "^2.1.0",
+    "source-map-support": "^0.5.4"
+  },
+  "scripts": {
+    "build": "gulp"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.js"
+    ],
+    "sources": [
+      "**/*.{js,jsx}"
+    ],
+    "concurrency": 1,
+    "failFast": true,
+    "failWithoutAssertions": false,
+    "tap": true,
+    "compileEnhancements": false,
+    "require": [
+      "./test/_register.js"
+    ]
+  }
+}
